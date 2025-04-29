@@ -8,11 +8,14 @@ export default function View() {
   //Replace dummy with data
   return (
     <div style={{ border: "1px solid white", padding: "16px" }}>
-      {dummy && dummy.length != 0 ? (
+      {data && data.length != 0 ? (
         <List sx={{ paddingLeft: 2 }}>
-          {dummy.map((n) => (
-            <ListItem key={n} sx={{ listStyleType: "disc", paddingLeft: 2 }}>
-              <Item id={n} />
+          {data.map((item) => (
+            <ListItem
+              key={item.id}
+              sx={{ listStyleType: "disc", paddingLeft: 2 }}
+            >
+              <Item id={item.id} itemData={item} />
             </ListItem>
           ))}
         </List>

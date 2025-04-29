@@ -1,15 +1,20 @@
 "use client";
 import { Box, Checkbox, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { DataContext } from "@/DataContext";
 
-export default function Item() {
-  const [checked, setChecked] = useState(false);
-
+export default function Item({ itemData }) {
+  const { data, setAppData } = useContext(DataContext);
   function handleCheck() {
-    setChecked((prevChecked) => !prevChecked);
+    setAppData(
+      data.map((d) =>
+        d.id === itemData.id ? { ...d, checked: !d.checked } : d
+      )
+    );
   }
+
   return (
     <Box
       sx={{
@@ -22,7 +27,11 @@ export default function Item() {
     >
       {/* Checkbox column */}
       <Box sx={{ width: "10%" }}>
-        <Checkbox sx={{ color: "white" }} onClick={handleCheck} />
+        <Checkbox
+          checked={itemData.checked}
+          sx={{ color: "white" }}
+          onClick={handleCheck}
+        />
       </Box>
 
       {/* List Item column */}
@@ -31,10 +40,10 @@ export default function Item() {
           width: "70%",
           display: "flex",
           alignItems: "center",
-          textDecoration: checked ? "line-through" : "none",
+          textDecoration: itemData.checked ? "line-through" : "none",
         }}
       >
-        List Item
+        {itemData.desc}
       </Box>
 
       {/* Edit column */}

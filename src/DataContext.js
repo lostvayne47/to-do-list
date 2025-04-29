@@ -8,8 +8,15 @@ const DataContext = createContext();
 export default function DataProvider({ children }) {
   // Local Storage Key
   const STORAGE_KEY = "App-data";
-
-  const [data, setData] = useState([]);
+  const defaultData = [
+    {
+      id: 0,
+      checked: false,
+      date: new Date(),
+      desc: "Wash bike",
+    },
+  ];
+  const [data, setData] = useState(defaultData);
 
   // Load data from localStorage when component mounts
   useEffect(() => {
@@ -19,7 +26,7 @@ export default function DataProvider({ children }) {
         setData(JSON.parse(stored)); // safely parse
       } catch (error) {
         console.error("Failed to parse localStorage data:", error);
-        setData([]); // fallback to empty array
+        setData(defaultData); // fallback to empty array
       }
     }
   }, []);
