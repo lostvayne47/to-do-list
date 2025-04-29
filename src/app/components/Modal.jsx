@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Button, TextField } from "@mui/material";
 import { DataContext } from "@/DataContext";
+import BasicDatePicker from "@/app/components/DatePicker";
 
 const style = {
   position: "absolute",
@@ -19,14 +20,24 @@ const style = {
 
 export default function BasicModal({ open, handleClose }) {
   const { data, setAppData } = useContext(DataContext);
-  const [formData, setFormData] = useState("");
+  const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+  const [formData, setFormData] = useState({
+    id: newId,
+    checked: false,
+    createdDate: new Date(),
+    dueDate: null,
+    desc: "",
+  });
 
   const handleInputChange = (event) => {
-    setFormData(event.target.value); // Update state when input changes
+    setFormData((prevFormData) => ({
+      ...prevFormData, // Spread the previous form data
+      desc: event.target.value, // Update the `desc` field with the new value
+    }));
   };
   const handleSubmit = () => {
     // Placeholder for the submit logic
-    console.log("Task Submitted:", formData);
+    console.log("Task Submitted:", formData.desc);
     // Reset task input after submit (optional)
     setFormData("");
     handleClose(); // Close the modal after submission (if you want)
@@ -52,10 +63,11 @@ export default function BasicModal({ open, handleClose }) {
             placeholder="Buy apples"
             variant="outlined"
             required
-            helperText={!formData ? "Task cannot be empty" : ""} // Error message if task is empty
-            value={formData} // Set value to state
+            helperText={!formData.desc ? "Task cannot be empty" : ""} // Error message if task is empty
+            value={formData.desc} // Set value to state
             onChange={handleInputChange} // Handle change in input
           />
+          <BasicDatePicker setFormData={setFormData} />
           <Button
             variant="contained"
             color="success"
