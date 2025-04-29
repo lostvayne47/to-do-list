@@ -39,14 +39,32 @@ export default function Item() {
 
       {/* Edit column */}
       <Box sx={{ width: "10%" }}>
-        <IconButton aria-label="edit">
+        <IconButton
+          aria-label="edit"
+          variant="contained"
+          sx={{
+            backgroundColor: "success.main",
+            "&:hover": {
+              backgroundColor: "success.dark", // Color when hovered
+            },
+          }}
+        >
           <EditIcon sx={{ color: "white" }} />
         </IconButton>
       </Box>
 
       {/* Delete column */}
       <Box sx={{ width: "10%" }}>
-        <IconButton aria-label="delete">
+        <IconButton
+          aria-label="delete"
+          variant="contained"
+          sx={{
+            backgroundColor: "error.main",
+            "&:hover": {
+              backgroundColor: "error.dark", // Color when hovered
+            },
+          }}
+        >
           <DeleteIcon sx={{ color: "white" }} />
         </IconButton>
       </Box>
