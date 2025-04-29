@@ -37,19 +37,8 @@ export default function Home() {
           >
             <AddIcon fontSize="large" />
           </Button>
-          <Button
-            aria-label="Remove"
-            onClick={handleClick}
-            color="error"
-            sx={glassStyle}
-          >
-            <RemoveIcon fontSize="large" />
-          </Button>
         </Box>
-
-        <Container>
-          <View />
-        </Container>
+        <View />
       </Container>
     </>
   );
