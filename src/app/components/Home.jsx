@@ -35,7 +35,10 @@ export default function Home() {
   return (
     <>
       <BasicModal open={open} handleClose={handleClose} />
-      <Container maxWidth="sm">
+      <Container
+        maxWidth="xl" // Sets the maxWidth
+        sx={{ minWidth: 300 }} // Sets the minWidth
+      >
         <Typography variant="h4" align="center" gutterBottom>
           Organise your day here
         </Typography>
