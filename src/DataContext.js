@@ -27,8 +27,10 @@ export default function DataProvider({ children }) {
         setData(JSON.parse(stored)); // safely parse
       } catch (error) {
         console.error("Failed to parse localStorage data:", error);
-        setData(defaultData); // fallback to empty array
+        setData(defaultData); // fallback to default array
       }
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
     }
   }, []);
 
