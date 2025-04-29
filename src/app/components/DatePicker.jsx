@@ -5,18 +5,26 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Button } from "@mui/material";
 
-export default function BasicDatePicker() {
+export default function BasicDatePicker({ setFormData }) {
   const [selectedDate, setSelectedDate] = useState(null);
 
   // Handler for DatePicker change event
   const handleDateChange = (newValue) => {
-    setSelectedDate(newValue); // Store the selected date
-    console.log(newValue);
+    const dateValue = newValue ? newValue.toDate() : null; // Convert Dayjs to Date object
+    setSelectedDate(dateValue); // Store the selected date as a Date object
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      dueDate: dateValue, // Store in form data as Date object
+    }));
   };
 
   // Handler to clear the date
   const handleClearDate = () => {
     setSelectedDate(null); // Reset the selected date to null
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      dueDate: null, // Clear the due date in form data
+    }));
   };
 
   return (
