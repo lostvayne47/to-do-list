@@ -11,7 +11,7 @@ export default function BasicDatePicker({ setFormData }) {
   // Handler for DatePicker change event
   const handleDateChange = (newValue) => {
     const dateValue = newValue ? newValue.toDate() : null; // Convert Dayjs to Date object
-    setSelectedDate(dateValue); // Store the selected date as a Date object
+    setSelectedDate(newValue); // Store the selected date as a Date object
     setFormData((prevFormData) => ({
       ...prevFormData,
       dueDate: dateValue, // Store in form data as Date object
