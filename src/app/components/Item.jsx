@@ -26,7 +26,7 @@ export default function Item({ itemData }) {
       }}
     >
       {/* Checkbox column */}
-      <Box sx={{ width: "10%" }}>
+      <Box sx={{ width: "5%" }}>
         <Checkbox
           checked={itemData.checked}
           sx={{ color: "white" }}
@@ -37,7 +37,7 @@ export default function Item({ itemData }) {
       {/* List Item column */}
       <Box
         sx={{
-          width: "70%",
+          width: "65%",
           display: "flex",
           alignItems: "center",
           textDecoration: itemData.checked ? "line-through" : "none",
@@ -45,9 +45,35 @@ export default function Item({ itemData }) {
       >
         {itemData.desc}
       </Box>
+      {/* Created Date column */}
+      <Box
+        sx={{
+          width: "10%",
+          display: "flex",
+          alignItems: "center",
+          textDecoration: itemData.checked ? "line-through" : "none",
+        }}
+      >
+        {itemData.createdDate
+          ? new Date(itemData.createdDate).toLocaleDateString()
+          : "-- / - / ----"}
+      </Box>
 
+      {/* Due Date column */}
+      <Box
+        sx={{
+          width: "10%",
+          display: "flex",
+          alignItems: "center",
+          textDecoration: itemData.checked ? "line-through" : "none",
+        }}
+      >
+        {itemData.dueDate
+          ? new Date(itemData.dueDate).toLocaleDateString()
+          : "-- / - / ----"}
+      </Box>
       {/* Edit column */}
-      <Box sx={{ width: "10%" }}>
+      <Box sx={{ width: "5%" }}>
         <IconButton
           aria-label="edit"
           variant="contained"
@@ -63,7 +89,7 @@ export default function Item({ itemData }) {
       </Box>
 
       {/* Delete column */}
-      <Box sx={{ width: "10%" }}>
+      <Box sx={{ width: "5%" }}>
         <IconButton
           aria-label="delete"
           variant="contained"

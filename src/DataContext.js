@@ -12,7 +12,7 @@ export default function DataProvider({ children }) {
     {
       id: 0,
       checked: false,
-      dateCreated: new Date(),
+      createdDate: new Date(),
       dueDate: null,
       desc: "Wash bike",
     },
