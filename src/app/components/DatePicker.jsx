@@ -26,6 +26,7 @@ export default function BasicDatePicker() {
           label="Due Date"
           value={selectedDate} // Controlled value of DatePicker
           onChange={handleDateChange} // Capture date change
+          disablePast
         />
         {/* Button to clear the date */}
         {selectedDate && (
