@@ -37,7 +37,7 @@ export default function Item({ itemData }) {
       {/* List Item column */}
       <Box
         sx={{
-          width: "65%",
+          width: "60%",
           display: "flex",
           alignItems: "center",
           textDecoration: itemData.checked ? "line-through" : "none",
@@ -73,7 +73,7 @@ export default function Item({ itemData }) {
           : "-- / - / ----"}
       </Box>
       {/* Edit column */}
-      <Box sx={{ width: "5%" }}>
+      <Box sx={{ width: "7.5%" }}>
         <IconButton
           aria-label="edit"
           variant="contained"
@@ -89,7 +89,7 @@ export default function Item({ itemData }) {
       </Box>
 
       {/* Delete column */}
-      <Box sx={{ width: "5%" }}>
+      <Box sx={{ width: "7.5%" }}>
         <IconButton
           aria-label="delete"
           variant="contained"
