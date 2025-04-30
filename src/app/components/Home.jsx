@@ -1,10 +1,9 @@
 "use client"; // Ensure the component is client-side
 
-import { Button, Container, Box, Skeleton, Table } from "@mui/material";
+import { Button, Container, Box, Skeleton } from "@mui/material";
 import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
-import View from "./View";
 import BasicModal from "./Modal";
 import { DataContext } from "@/DataContext";
 import WarrantyTracker from "./WarrantyTracker";
@@ -94,7 +93,6 @@ export default function Home() {
           </div>
         ) : (
           <>
-            <View />
             <WarrantyTracker />
           </>
         )}
