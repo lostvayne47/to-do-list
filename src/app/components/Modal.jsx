@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import { Button, TextField } from "@mui/material";
 import { DataContext } from "@/DataContext";
 import BasicDatePicker from "@/app/components/DatePicker";
+import { Fade } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -21,6 +22,8 @@ const style = {
 export default function BasicModal({ open, handleClose }) {
   const { data, setAppData } = useContext(DataContext);
   const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+  const [touched, setTouched] = useState(false);
+
   const [formData, setFormData] = useState({
     id: newId,
     checked: false,
@@ -65,17 +68,21 @@ export default function BasicModal({ open, handleClose }) {
             Describe your task
           </Typography>
           <TextField
-            m={2}
-            p={2}
-            fullWidth={true}
+            fullWidth
             id="outlined-basic"
             label="Task"
             placeholder="Buy apples"
             variant="outlined"
             required
-            helperText={!formData.desc ? "Task cannot be empty" : ""} // Error message if task is empty
-            value={formData.desc} // Set value to state
-            onChange={handleInputChange} // Handle change in input
+            error={touched && !formData.desc}
+            value={formData.desc}
+            onChange={handleInputChange}
+            onBlur={() => setTouched(true)}
+            helperText={
+              <Fade in={touched && !formData.desc}>
+                <span>Task cannot be empty</span>
+              </Fade>
+            }
           />
           <BasicDatePicker setFormData={setFormData} />
           <Button

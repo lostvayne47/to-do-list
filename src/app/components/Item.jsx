@@ -1,5 +1,5 @@
 "use client";
-import { Box, Checkbox, IconButton } from "@mui/material";
+import { Box, Checkbox, IconButton, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,13 +23,15 @@ export default function Item({ itemData }) {
   if (endDate === "-- / - / ----") {
     deadlineColour = "";
   } else if (today === dueDate) {
-    deadlineColour = "error"; // Due today
+    deadlineColour = "darkred"; // Due today
   } else if (diffInDays <= 3) {
-    deadlineColour = "warning"; // Due within 3 days
+    deadlineColour = "darkyellow"; // Due within 3 days
   } else {
-    deadlineColour = "success"; // Due in more than 3 days
+    deadlineColour = "darkgreen"; // Due in more than 3 days
   }
 
+  function handleEdit() {}
+  function handleDelete() {}
   function handleCheck() {
     setAppData(
       data.map((d) =>
@@ -46,10 +48,18 @@ export default function Item({ itemData }) {
         border: "1px solid white",
         width: "100%",
         padding: "8px",
+        gap: "5px",
       }}
     >
       {/* Checkbox column */}
-      <Box sx={{ width: "5%" }}>
+      <Box
+        sx={{
+          width: "5%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Checkbox
           checked={itemData.checked}
           sx={{ color: "white" }}
@@ -60,14 +70,31 @@ export default function Item({ itemData }) {
       {/* List Item column */}
       <Box
         sx={{
-          width: "60%",
+          width: "30%",
           display: "flex",
           alignItems: "center",
           textDecoration: itemData.checked ? "line-through" : "none",
+          whiteSpace: "normal",
+          wordBreak: "break-word",
         }}
       >
-        {itemData.desc}
+        <Typography variant="body1">{itemData.desc}</Typography>
       </Box>
+
+      {/* List Item Serial Number column */}
+      <Box
+        sx={{
+          width: "30%",
+          display: "flex",
+          alignItems: "center",
+          textDecoration: itemData.checked ? "line-through" : "none",
+          whiteSpace: "normal",
+          wordBreak: "break-word",
+        }}
+      >
+        <Typography variant="body1">SERIAL NUMBER</Typography>
+      </Box>
+
       {/* Created Date column */}
       <Box
         sx={{
@@ -75,9 +102,12 @@ export default function Item({ itemData }) {
           display: "flex",
           alignItems: "center",
           textDecoration: itemData.checked ? "line-through" : "none",
+          whiteSpace: "normal",
+          wordBreak: "break-word",
+          overflow: "clip",
         }}
       >
-        {startDate}
+        <Typography variant="body2">{startDate}</Typography>
       </Box>
 
       {/* Due Date column */}
@@ -86,21 +116,38 @@ export default function Item({ itemData }) {
           width: "10%",
           display: "flex",
           alignItems: "center",
+          padding: "5px",
+          marginRight: "1rem",
+          justifyContent: "center",
           textDecoration: itemData.checked ? "line-through" : "none",
           background: deadlineColour,
+          borderRadius: "5px",
+          whiteSpace: "normal",
+          wordBreak: "break-word",
+          overflow: "clip",
         }}
       >
-        {endDate}
+        <Typography variant="body2">{endDate}</Typography>
       </Box>
+
       {/* Edit column */}
-      <Box sx={{ width: "7.5%" }}>
+      <Box
+        sx={{
+          width: "7.5%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <IconButton
           aria-label="edit"
           variant="contained"
+          onClick={handleEdit}
           sx={{
             backgroundColor: "success.main",
+            cursor: "pointer",
             "&:hover": {
-              backgroundColor: "success.dark", // Color when hovered
+              backgroundColor: "success.dark",
             },
           }}
         >
@@ -109,14 +156,24 @@ export default function Item({ itemData }) {
       </Box>
 
       {/* Delete column */}
-      <Box sx={{ width: "7.5%" }}>
+      <Box
+        sx={{
+          width: "7.5%",
+          display: "flex",
+          marginX: "0.5rem",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <IconButton
           aria-label="delete"
           variant="contained"
+          onClick={handleDelete}
           sx={{
             backgroundColor: "error.main",
+            cursor: "pointer",
             "&:hover": {
-              backgroundColor: "error.dark", // Color when hovered
+              backgroundColor: "error.dark",
             },
           }}
         >
