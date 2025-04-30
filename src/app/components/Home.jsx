@@ -2,17 +2,19 @@
 
 import { Button, Container, Box, Skeleton } from "@mui/material";
 import React, { useContext } from "react";
-import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import BasicModal from "./Modal";
 import { DataContext } from "@/DataContext";
 import WarrantyTracker from "./WarrantyTracker";
+
 const glassStyle = {
-  backgroundColor: "rgba(255, 255, 255, 0.1)",
+  backgroundColor: "rgba(255, 255, 255, 0.95)",
   backdropFilter: "blur(10px)",
-  border: "1px solid rgba(255, 255, 255, 0.2)",
+  border: "1px solid rgba(255, 255, 255, 0.95)",
   borderRadius: 2,
   boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+  fontWeight: "bold",
+  color: "black",
 };
 
 export default function Home() {
@@ -41,25 +43,10 @@ export default function Home() {
         maxWidth="xl" // Sets the maxWidth
         sx={{ minWidth: 300 }} // Sets the minWidth
       >
-        <Typography
-          variant="h4"
-          align="center"
-          sx={{
-            mt: 3, // Adds space (gutter) at the top
-            mb: 1, // Adds space (gutter) at the top
-          }}
-        >
-          Add your products here
-        </Typography>
-
         <Box display="flex" justifyContent="space-evenly" p={2}>
-          <Button
-            aria-label="Add"
-            onClick={handleClick}
-            color="success"
-            sx={glassStyle}
-          >
-            <AddIcon fontSize="large" />
+          <Button aria-label="Add" onClick={handleClick} sx={glassStyle}>
+            Add a new product
+            <AddIcon color="success" fontSize="large" />
           </Button>
         </Box>
         {!data ? (

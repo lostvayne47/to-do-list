@@ -9,9 +9,7 @@ import {
   TableBody,
   Paper,
 } from "@mui/material";
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha";
-import SortIcon from "@mui/icons-material/Sort";
-import CategoryIcon from "@mui/icons-material/Category";
+import SwapVertIcon from "@mui/icons-material/SwapVert";
 import WarrantyRow from "./WarrantyRow"; // Assuming you have this component
 import { DataContext } from "@/DataContext";
 
@@ -106,26 +104,36 @@ const WarrantyTracker = () => {
           <TableRow>
             <TableCell sx={{ fontWeight: "bold" }}>
               Product{" "}
-              <SortByAlphaIcon
-                sx={{ fontSize: "large" }}
+              <SwapVertIcon
+                sx={{ fontSize: "large", cursor: "pointer" }}
                 onClick={() => handleSorting("name")}
               />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
-              Serial Number <SortIcon onClick={() => handleSorting("number")} />
+              Serial Number{" "}
+              <SwapVertIcon
+                onClick={() => handleSorting("number")}
+                sx={{ fontSize: "large", cursor: "pointer" }}
+              />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
-              Purchase Date{" "}
-              <SortIcon onClick={() => handleSorting("purchase")} />
+              Start Date{" "}
+              <SwapVertIcon
+                onClick={() => handleSorting("purchase")}
+                sx={{ fontSize: "large", cursor: "pointer" }}
+              />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
-              Warranty End Date{" "}
-              <SortIcon onClick={() => handleSorting("expiry")} />
+              End Date{" "}
+              <SwapVertIcon
+                onClick={() => handleSorting("expiry")}
+                sx={{ fontSize: "large", cursor: "pointer" }}
+              />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
               Status{" "}
-              <CategoryIcon
-                sx={{ fontSize: "large" }}
+              <SwapVertIcon
+                sx={{ fontSize: "large", cursor: "pointer" }}
                 onClick={() => handleSorting("status")}
               />
             </TableCell>

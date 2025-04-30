@@ -12,7 +12,7 @@ export default function Navbar() {
       <AppBar position="static" style={{ background: "#111111" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Warrenty Tracker
+            Warranty Tracker
           </Typography>
         </Toolbar>
       </AppBar>
