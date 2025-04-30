@@ -28,7 +28,7 @@ export default function BasicModal({ updateData = null, open, handleClose }) {
   const defaultFormData = {
     id: null,
     checked: false,
-    purchaseDate: new Date(),
+    purchaseDate: null,
     expiryDate: null,
     name: "",
     serial: "",
@@ -122,11 +122,13 @@ export default function BasicModal({ updateData = null, open, handleClose }) {
             setFormData={setFormData}
             productDate={"Purchase"}
             disableFuture={true}
+            existingDate={formData.purchaseDate}
           />
           <BasicDatePicker
             setFormData={setFormData}
             productDate={"Expiry"}
             disablePast={true}
+            existingDate={formData.expiryDate}
           />
           <Button
             variant="contained"

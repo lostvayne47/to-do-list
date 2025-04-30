@@ -4,14 +4,18 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Button } from "@mui/material";
+import dayjs from "dayjs";
 
 export default function BasicDatePicker({
   setFormData,
   productDate,
+  existingDate = null,
   disablePast = false,
   disableFuture = false,
 }) {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(
+    existingDate ? dayjs(existingDate) : null
+  );
 
   // Handler for DatePicker change event
   const handleDateChange = (newValue) => {
