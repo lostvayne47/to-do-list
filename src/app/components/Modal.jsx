@@ -36,11 +36,21 @@ export default function BasicModal({ open, handleClose }) {
     }));
   };
   const handleSubmit = () => {
-    // Placeholder for the submit logic
-    console.log("Task Submitted:", formData.desc);
-    // Reset task input after submit (optional)
-    setFormData("");
-    handleClose(); // Close the modal after submission (if you want)
+    const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+    const newTask = { ...formData, id: newId };
+
+    console.log("Task Added:", newTask);
+    setAppData([...data, newTask]);
+
+    setFormData({
+      id: newId + 1, // Prepare for next task
+      checked: false,
+      createdDate: new Date(),
+      dueDate: null,
+      desc: "",
+    });
+
+    handleClose();
   };
   return (
     <div>

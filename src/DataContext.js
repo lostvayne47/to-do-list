@@ -17,7 +17,7 @@ export default function DataProvider({ children }) {
       desc: "Wash bike",
     },
   ];
-  const [data, setData] = useState(defaultData);
+  const [data, setData] = useState([]);
 
   // Load data from localStorage when component mounts
   useEffect(() => {

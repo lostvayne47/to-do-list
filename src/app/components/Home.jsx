@@ -1,11 +1,12 @@
 "use client"; // Ensure the component is client-side
 
-import { Button, Container, Box } from "@mui/material";
-import React from "react";
+import { Button, Container, Box, Skeleton } from "@mui/material";
+import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import View from "./View";
 import BasicModal from "./Modal";
+import { DataContext } from "@/DataContext";
 const glassStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.1)",
   backdropFilter: "blur(10px)",
@@ -18,6 +19,7 @@ export default function Home() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { data } = useContext(DataContext);
 
   function handleClick(e) {
     e.preventDefault();
@@ -53,7 +55,38 @@ export default function Home() {
             <AddIcon fontSize="large" />
           </Button>
         </Box>
-        <View />
+        {!data ? (
+          <div className="container mx-auto">
+            <div className="flex flex-col gap-5">
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height={60}
+                sx={{ bgcolor: "#4444" }}
+              />
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height={60}
+                sx={{ bgcolor: "#4444" }}
+              />
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height={60}
+                sx={{ bgcolor: "#4444" }}
+              />
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height={60}
+                sx={{ bgcolor: "#4444" }}
+              />
+            </div>
+          </div>
+        ) : (
+          <View />
+        )}
       </Container>
     </>
   );
