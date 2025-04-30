@@ -70,7 +70,7 @@ export default function BasicModal({ updateData = null, open, handleClose }) {
   }, [open]); // dependency array => runs whenever open changes
 
   return (
-    <div>
+    <>
       <Modal
         open={open}
         onClose={handleClose}
@@ -140,6 +140,6 @@ export default function BasicModal({ updateData = null, open, handleClose }) {
           </Button>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
