@@ -48,11 +48,7 @@ export default function BasicDatePicker({
         />
         {/* Button to clear the date */}
         {selectedDate && (
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick={handleClearDate}
-          >
+          <Button variant="outlined" color="error" onClick={handleClearDate}>
             Clear Date
           </Button>
         )}

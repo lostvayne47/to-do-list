@@ -69,7 +69,7 @@ const WarrantyRow = ({ itemData }) => {
             <EditIcon onClick={handleUpdate} />
           </IconButton>
           <IconButton color="secondary" aria-label="delete">
-            <DeleteIcon onClick={handleDelete} />
+            <DeleteIcon onClick={handleDelete} color="error" />
           </IconButton>
         </TableCell>
       </TableRow>
