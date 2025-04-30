@@ -1,8 +1,8 @@
 import emailjs from "emailjs-com";
 
-const serviceId = "service_f7qub8t";
-const templateId = "template_4gr7cwl";
-const publicKey = "R4nRW5_8c-FEMPYgz";
+const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 const sendEmail = (
   recipient,
@@ -21,9 +21,6 @@ const sendEmail = (
     websiteUrl: websiteUrl,
   };
 
-  //   console.log(process.env.REACT_APP_EMAILJS_SERVICE_ID);
-  //   console.log(process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
-  //   console.log(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
   emailjs
     .send(serviceId, templateId, templateParams, publicKey)
     .then((response) => {
