@@ -29,13 +29,14 @@ export default function BasicModal({ open, handleClose }) {
     checked: false,
     createdDate: new Date(),
     dueDate: null,
-    desc: "",
+    name: "",
+    serial: "",
   });
 
   const handleInputChange = (event) => {
     setFormData((prevFormData) => ({
       ...prevFormData, // Spread the previous form data
-      desc: event.target.value, // Update the `desc` field with the new value
+      [event.target.name]: event.target.value, // Update the field with the new value
     }));
   };
   const handleSubmit = () => {
@@ -50,7 +51,8 @@ export default function BasicModal({ open, handleClose }) {
       checked: false,
       createdDate: new Date(),
       dueDate: null,
-      desc: "",
+      name: "",
+      serial: "",
     });
 
     handleClose();
@@ -69,18 +71,37 @@ export default function BasicModal({ open, handleClose }) {
           </Typography>
           <TextField
             fullWidth
+            name="name"
             id="outlined-basic"
-            label="Task"
-            placeholder="Buy apples"
+            label="Product Name"
+            placeholder="JBL Headphones"
             variant="outlined"
             required
-            error={touched && !formData.desc}
-            value={formData.desc}
+            error={touched && !formData.name}
+            value={formData.name}
             onChange={handleInputChange}
             onBlur={() => setTouched(true)}
             helperText={
-              <Fade in={touched && !formData.desc}>
-                <span>Task cannot be empty</span>
+              <Fade in={touched && !formData.name}>
+                <span>Product Name cannot be empty</span>
+              </Fade>
+            }
+          />
+          <TextField
+            fullWidth
+            name="serial"
+            id="outlined-basic"
+            label="Product Serial Number"
+            placeholder="XX67EF7H"
+            variant="outlined"
+            required
+            error={touched && !formData.serial}
+            value={formData.serial}
+            onChange={handleInputChange}
+            onBlur={() => setTouched(true)}
+            helperText={
+              <Fade in={touched && !formData.serial}>
+                <span>Serial Number cannot be empty</span>
               </Fade>
             }
           />

@@ -14,7 +14,8 @@ export default function DataProvider({ children }) {
       checked: false,
       createdDate: new Date(),
       dueDate: null,
-      desc: "Wash bike",
+      name: "JBL Headphones",
+      serial: "EF235XXX",
     },
   ];
   const [data, setData] = useState([]);

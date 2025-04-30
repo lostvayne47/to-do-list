@@ -31,7 +31,7 @@ export default function BasicDatePicker({ setFormData }) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DatePicker"]}>
         <DatePicker
-          label="Due Date"
+          label="Expiry Date"
           value={selectedDate} // Controlled value of DatePicker
           onChange={handleDateChange} // Capture date change
           disablePast

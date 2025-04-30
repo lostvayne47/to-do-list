@@ -78,7 +78,7 @@ export default function Item({ itemData }) {
           wordBreak: "break-word",
         }}
       >
-        <Typography variant="body1">{itemData.desc}</Typography>
+        <Typography variant="body1">{itemData.name}</Typography>
       </Box>
 
       {/* List Item Serial Number column */}
@@ -92,7 +92,7 @@ export default function Item({ itemData }) {
           wordBreak: "break-word",
         }}
       >
-        <Typography variant="body1">SERIAL NUMBER</Typography>
+        <Typography variant="body1">{itemData.serial}</Typography>
       </Box>
 
       {/* Created Date column */}
