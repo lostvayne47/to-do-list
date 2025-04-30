@@ -114,7 +114,16 @@ export default function BasicModal({ open, handleClose }) {
               </Fade>
             }
           />
-          <BasicDatePicker setFormData={setFormData} />
+          <BasicDatePicker
+            setFormData={setFormData}
+            productDate={"Purchase"}
+            disableFuture={true}
+          />
+          <BasicDatePicker
+            setFormData={setFormData}
+            productDate={"Expiry"}
+            disablePast={true}
+          />
           <Button
             variant="contained"
             color="success"

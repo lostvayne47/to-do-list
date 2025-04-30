@@ -5,7 +5,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Button } from "@mui/material";
 
-export default function BasicDatePicker({ setFormData }) {
+export default function BasicDatePicker({
+  setFormData,
+  productDate,
+  disablePast = false,
+  disableFuture = false,
+}) {
   const [selectedDate, setSelectedDate] = useState(null);
 
   // Handler for DatePicker change event
@@ -14,7 +19,7 @@ export default function BasicDatePicker({ setFormData }) {
     setSelectedDate(newValue); // Store the selected date as a Date object
     setFormData((prevFormData) => ({
       ...prevFormData,
-      expiryDate: dateValue, // Store in form data as Date object
+      [`${productDate.toLowerCase()}Date`]: dateValue, // Store in form data as Date object
     }));
   };
 
@@ -29,12 +34,13 @@ export default function BasicDatePicker({ setFormData }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={["DatePicker"]}>
+      <DemoContainer components={["DatePicker"]} sx={{ marginTop: "1rem" }}>
         <DatePicker
-          label="Expiry Date"
+          label={productDate}
           value={selectedDate} // Controlled value of DatePicker
           onChange={handleDateChange} // Capture date change
-          disablePast
+          disablePast={disablePast}
+          disableFuture={disableFuture}
         />
         {/* Button to clear the date */}
         {selectedDate && (
@@ -42,7 +48,6 @@ export default function BasicDatePicker({ setFormData }) {
             variant="outlined"
             color="secondary"
             onClick={handleClearDate}
-            sx={{ marginTop: 2 }}
           >
             Clear Date
           </Button>
