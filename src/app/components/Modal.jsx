@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -22,7 +22,8 @@ const style = {
 export default function BasicModal({ open, handleClose }) {
   const { data, setAppData } = useContext(DataContext);
   const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
-  const [touched, setTouched] = useState(false);
+  const [nameTouched, setNameTouched] = useState(false);
+  const [serialTouched, setSerialTouched] = useState(false);
 
   const [formData, setFormData] = useState({
     id: newId,
@@ -57,6 +58,14 @@ export default function BasicModal({ open, handleClose }) {
 
     handleClose();
   };
+  // Watch open: when it becomes false, reset everything
+  useEffect(() => {
+    if (!open) {
+      setNameTouched(false);
+      setSerialTouched(false);
+    }
+  }, [open]); // dependency array => runs whenever open changes
+
   return (
     <div>
       <Modal
@@ -77,12 +86,12 @@ export default function BasicModal({ open, handleClose }) {
             placeholder="JBL Headphones"
             variant="outlined"
             required
-            error={touched && !formData.name}
+            error={nameTouched && !formData.name}
             value={formData.name}
             onChange={handleInputChange}
-            onBlur={() => setTouched(true)}
+            onBlur={() => setNameTouched(true)}
             helperText={
-              <Fade in={touched && !formData.name}>
+              <Fade in={nameTouched && !formData.name}>
                 <span>Product Name cannot be empty</span>
               </Fade>
             }
@@ -95,12 +104,12 @@ export default function BasicModal({ open, handleClose }) {
             placeholder="XX67EF7H"
             variant="outlined"
             required
-            error={touched && !formData.serial}
+            error={serialTouched && !formData.serial}
             value={formData.serial}
             onChange={handleInputChange}
-            onBlur={() => setTouched(true)}
+            onBlur={() => setSerialTouched(true)}
             helperText={
-              <Fade in={touched && !formData.serial}>
+              <Fade in={serialTouched && !formData.serial}>
                 <span>Serial Number cannot be empty</span>
               </Fade>
             }
