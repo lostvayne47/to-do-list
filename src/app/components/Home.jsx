@@ -1,15 +1,17 @@
 "use client"; // Ensure the component is client-side
 
 import { Button, Container, Box, Skeleton } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import BasicModal from "./Modal";
 import { DataContext } from "@/DataContext";
 import WarrantyTracker from "./WarrantyTracker";
 import sendEmail from "../EmailService";
+import EmailIcon from "@mui/icons-material/Email";
+import Input from "@mui/material/Input";
 
 const buttonStyle = {
-  backgroundColor: "white",
+  background: "white",
   border: "1px solid white",
   borderRadius: 2,
   fontWeight: "bold",
@@ -26,6 +28,8 @@ export default function Home() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { data } = useContext(DataContext);
+  const [email, setEmail] = useState("");
+  const websiteURL = "https://yourwebsite.com";
 
   function handleClick(e) {
     e.preventDefault();
@@ -39,18 +43,53 @@ export default function Home() {
         return;
     }
   }
-  function handleSend() {
-    // Example usage
-    sendEmail(
-      "prachi.gupta19@vit.edu", // recipient email address
-      "JBL Headphones", // product name
-      "EF235XXX", // serial number
-      "2022-01-01", // purchase date
-      "2023-01-01", // expiry date
-      "https://yourwebsite.com" // website URL
-    );
-    alert("Email Sent");
+  const handleInputChange = (event) => {
+    setEmail(event.target.value);
+  };
+  // Helper function to get the status priority
+  function getStatus(expiryDate) {
+    const today = new Date();
+
+    // Check for "No Expiry" status (i.e., expiryDate is null or some placeholder)
+    if (!expiryDate || expiryDate === "-- / - / ----") {
+      return 0; // Priority for "No Expiry"
+    }
+
+    const endDate = new Date(expiryDate);
+    const daysLeft = (endDate - today) / (1000 * 3600 * 24); // Days difference
+
+    if (daysLeft <= 0) return 3; // Expired
+    if (daysLeft <= 3) return 2; // Due
+    return 1; // Active
   }
+
+  function handleSend() {
+    try {
+      if (email) {
+        data.map((d) => {
+          if (getStatus(d.expiryDate) > 1) {
+            sendEmail(
+              email, // recipient email address
+              d.name, // product name
+              d.serial, // serial number
+              new Date(d.purchaseDate).toLocaleDateString(), // purchase date
+              new Date(d.expiryDate).toLocaleDateString(), // expiry date
+              websiteURL // website URL
+            );
+          }
+        });
+        alert("Email Sent");
+        setTimeout(() => {
+          setEmail("");
+        }, 1500);
+      } else {
+        alert("Please Enter Valid Email");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <BasicModal open={open} handleClose={handleClose} />
@@ -60,13 +99,31 @@ export default function Home() {
       >
         <Box display="flex" justifyContent="space-evenly" p={2}>
           <Button aria-label="Add" onClick={handleClick} sx={buttonStyle}>
-            <AddIcon
-              backgroundColor="success"
-              color="success"
-              fontSize="large"
-            />
+            <AddIcon background="success" color="success" fontSize="large" />
             New product
           </Button>
+          <div>
+            <Input
+              placeholder="xyz@gmail.com"
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+              variant="outlined"
+              required
+              autoComplete="email"
+              sx={{
+                padding: "0.5rem",
+                marginX: "1rem",
+                background: "white",
+                color: "black",
+                borderRadius: "1rem",
+              }}
+            />
+            <Button onClick={handleSend} sx={{ ...buttonStyle }}>
+              <EmailIcon />
+              Send Report
+            </Button>
+          </div>
         </Box>
         {!data ? (
           <div className="container mx-auto">
@@ -103,9 +160,6 @@ export default function Home() {
           </>
         )}
       </Container>
-      <Button onClick={handleSend} sx={{ ...buttonStyle, margin: "20px" }}>
-        Send
-      </Button>
     </>
   );
 }
