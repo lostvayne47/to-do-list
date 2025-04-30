@@ -6,8 +6,9 @@ import AddIcon from "@mui/icons-material/Add";
 import BasicModal from "./Modal";
 import { DataContext } from "@/DataContext";
 import WarrantyTracker from "./WarrantyTracker";
+import sendEmail from "../EmailService";
 
-const glassStyle = {
+const buttonStyle = {
   backgroundColor: "white",
   border: "1px solid white",
   borderRadius: 2,
@@ -38,7 +39,18 @@ export default function Home() {
         return;
     }
   }
-
+  function handleSend() {
+    // Example usage
+    sendEmail(
+      "prachi.gupta19@vit.edu", // recipient email address
+      "JBL Headphones", // product name
+      "EF235XXX", // serial number
+      "2022-01-01", // purchase date
+      "2023-01-01", // expiry date
+      "https://yourwebsite.com" // website URL
+    );
+    alert("Email Sent");
+  }
   return (
     <>
       <BasicModal open={open} handleClose={handleClose} />
@@ -47,7 +59,7 @@ export default function Home() {
         sx={{ minWidth: 300 }} // Sets the minWidth
       >
         <Box display="flex" justifyContent="space-evenly" p={2}>
-          <Button aria-label="Add" onClick={handleClick} sx={glassStyle}>
+          <Button aria-label="Add" onClick={handleClick} sx={buttonStyle}>
             <AddIcon
               backgroundColor="success"
               color="success"
@@ -91,6 +103,9 @@ export default function Home() {
           </>
         )}
       </Container>
+      <Button onClick={handleSend} sx={{ ...buttonStyle, margin: "20px" }}>
+        Send
+      </Button>
     </>
   );
 }
