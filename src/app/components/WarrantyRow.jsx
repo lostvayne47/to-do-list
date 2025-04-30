@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TableCell, TableRow, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Status from "./Status";
+import { DataContext } from "@/DataContext";
 
 const WarrantyRow = ({ itemData }) => {
+  const { data, setAppData } = useContext(DataContext);
   const purchaseDate = itemData.purchaseDate
     ? new Date(itemData.purchaseDate).toLocaleDateString()
     : "-- / - / ----";
@@ -37,6 +39,12 @@ const WarrantyRow = ({ itemData }) => {
   };
 
   const itemStatus = getStatus(itemData.expiryDate);
+
+  function handleDelete() {
+    const newData = data.filter((d) => d.id != itemData.id);
+    setAppData(newData);
+  }
+
   return (
     <TableRow>
       <TableCell>{itemData.name}</TableCell>
@@ -49,7 +57,7 @@ const WarrantyRow = ({ itemData }) => {
           <EditIcon />
         </IconButton>
         <IconButton color="secondary" aria-label="delete">
-          <DeleteIcon />
+          <DeleteIcon onClick={handleDelete} />
         </IconButton>
       </TableCell>
     </TableRow>
