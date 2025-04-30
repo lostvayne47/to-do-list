@@ -8,13 +8,16 @@ import { DataContext } from "@/DataContext";
 import WarrantyTracker from "./WarrantyTracker";
 
 const glassStyle = {
-  backgroundColor: "rgba(255, 255, 255, 0.95)",
-  backdropFilter: "blur(10px)",
-  border: "1px solid rgba(255, 255, 255, 0.95)",
+  backgroundColor: "white",
+  border: "1px solid white",
   borderRadius: 2,
-  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
   fontWeight: "bold",
   color: "black",
+  cursor: "pointer", // Add a pointer cursor for better UX
+  transition: "transform 0.2s", // Add transition for hover effect
+  "&:hover": {
+    transform: "scale(1.05)", // Slightly enlarge button on hover
+  },
 };
 
 export default function Home() {
@@ -45,8 +48,12 @@ export default function Home() {
       >
         <Box display="flex" justifyContent="space-evenly" p={2}>
           <Button aria-label="Add" onClick={handleClick} sx={glassStyle}>
-            Add a new product
-            <AddIcon color="success" fontSize="large" />
+            <AddIcon
+              backgroundColor="success"
+              color="success"
+              fontSize="large"
+            />
+            New product
           </Button>
         </Box>
         {!data ? (
