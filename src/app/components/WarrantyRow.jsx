@@ -39,8 +39,8 @@ const WarrantyRow = ({ itemData }) => {
     <TableRow>
       <TableCell>{itemData.name}</TableCell>
       <TableCell sx={{ textAlign: "center" }}>{purchaseDate}</TableCell>
-      <TableCell sx={{ textAlign: "center" }}>{itemData.serial}</TableCell>
       <TableCell sx={{ textAlign: "center" }}>{expiryDate}</TableCell>
+      <TableCell sx={{ textAlign: "center" }}>{itemData.serial}</TableCell>
       <TableCell sx={{ textAlign: "center" }}>{itemStatus}</TableCell>
       <TableCell sx={{ textAlign: "center" }}>
         <IconButton color="primary" aria-label="edit">

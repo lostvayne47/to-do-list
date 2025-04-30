@@ -19,8 +19,8 @@ const WarrantyTracker = () => {
         <TableHead>
           <TableRow>
             <TableCell>Product</TableCell>
-            <TableCell sx={{ textAlign: "center" }}>Purchase Date</TableCell>
             <TableCell sx={{ textAlign: "center" }}>Serial Number</TableCell>
+            <TableCell sx={{ textAlign: "center" }}>Purchase Date</TableCell>
             <TableCell sx={{ textAlign: "center" }}>
               Warranty End Date
             </TableCell>
