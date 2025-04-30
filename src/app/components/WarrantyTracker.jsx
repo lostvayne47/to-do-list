@@ -13,6 +13,16 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import WarrantyRow from "./WarrantyRow"; // Assuming you have this component
 import { DataContext } from "@/DataContext";
 
+const sortingButtonStyle = {
+  fontSize: "large",
+  cursor: "pointer",
+  transition: "transform 0.2s ease, color 0.2s ease",
+  "&:active": {
+    transform: "scale(0.9)", // Shrink the icon when clicked
+    color: "#FF7300", // Optional: change color when clicked
+  },
+};
+
 const WarrantyTracker = () => {
   const { data, setAppData } = useContext(DataContext);
   const [sortOrder, setSortOrder] = useState("asc"); // Track current sort order
@@ -99,13 +109,13 @@ const WarrantyTracker = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650, color: "white" }}>
+      <Table sx={{ minWidth: 650, color: "white", borderRadius: "50px" }}>
         <TableHead>
           <TableRow>
             <TableCell sx={{ fontWeight: "bold" }}>
               Product{" "}
               <SwapVertIcon
-                sx={{ fontSize: "large", cursor: "pointer" }}
+                sx={sortingButtonStyle}
                 onClick={() => handleSorting("name")}
               />
             </TableCell>
@@ -113,27 +123,27 @@ const WarrantyTracker = () => {
               Serial Number{" "}
               <SwapVertIcon
                 onClick={() => handleSorting("number")}
-                sx={{ fontSize: "large", cursor: "pointer" }}
+                sx={sortingButtonStyle}
               />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
               Start Date{" "}
               <SwapVertIcon
                 onClick={() => handleSorting("purchase")}
-                sx={{ fontSize: "large", cursor: "pointer" }}
+                sx={sortingButtonStyle}
               />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
               End Date{" "}
               <SwapVertIcon
                 onClick={() => handleSorting("expiry")}
-                sx={{ fontSize: "large", cursor: "pointer" }}
+                sx={sortingButtonStyle}
               />
             </TableCell>
             <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
               Status{" "}
               <SwapVertIcon
-                sx={{ fontSize: "large", cursor: "pointer" }}
+                sx={sortingButtonStyle}
                 onClick={() => handleSorting("status")}
               />
             </TableCell>
