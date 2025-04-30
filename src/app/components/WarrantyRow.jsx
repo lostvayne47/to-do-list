@@ -20,6 +20,9 @@ const WarrantyRow = ({ itemData }) => {
     : "-- / - / ----";
 
   const getStatus = (warrantyEndDate) => {
+    if (!warrantyEndDate || warrantyEndDate === "-- / - / ----") {
+      return <Status themeColour={"#1976d2"} message={"No Expiry"} />;
+    }
     const today = new Date();
     const endDate = new Date(warrantyEndDate);
     const daysLeft = (endDate - today) / (1000 * 3600 * 24); // Days difference
