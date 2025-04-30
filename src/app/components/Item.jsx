@@ -7,6 +7,29 @@ import { DataContext } from "@/DataContext";
 
 export default function Item({ itemData }) {
   const { data, setAppData } = useContext(DataContext);
+  const startDate = itemData.createdDate
+    ? new Date(itemData.createdDate).toLocaleDateString()
+    : "-- / - / ----";
+  const endDate = itemData.dueDate
+    ? new Date(itemData.dueDate).toLocaleDateString()
+    : "-- / - / ----";
+
+  const today = new Date().toLocaleDateString();
+  const dueDate = new Date(itemData.dueDate).toLocaleDateString();
+
+  let deadlineColour;
+
+  const diffInDays = (itemData.dueDate - new Date()) / (1000 * 60 * 60 * 24);
+  if (endDate === "-- / - / ----") {
+    deadlineColour = "";
+  } else if (today === dueDate) {
+    deadlineColour = "error"; // Due today
+  } else if (diffInDays <= 3) {
+    deadlineColour = "warning"; // Due within 3 days
+  } else {
+    deadlineColour = "success"; // Due in more than 3 days
+  }
+
   function handleCheck() {
     setAppData(
       data.map((d) =>
@@ -54,9 +77,7 @@ export default function Item({ itemData }) {
           textDecoration: itemData.checked ? "line-through" : "none",
         }}
       >
-        {itemData.createdDate
-          ? new Date(itemData.createdDate).toLocaleDateString()
-          : "-- / - / ----"}
+        {startDate}
       </Box>
 
       {/* Due Date column */}
@@ -66,11 +87,10 @@ export default function Item({ itemData }) {
           display: "flex",
           alignItems: "center",
           textDecoration: itemData.checked ? "line-through" : "none",
+          background: deadlineColour,
         }}
       >
-        {itemData.dueDate
-          ? new Date(itemData.dueDate).toLocaleDateString()
-          : "-- / - / ----"}
+        {endDate}
       </Box>
       {/* Edit column */}
       <Box sx={{ width: "7.5%" }}>

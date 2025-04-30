@@ -41,8 +41,15 @@ export default function Home() {
         maxWidth="xl" // Sets the maxWidth
         sx={{ minWidth: 300 }} // Sets the minWidth
       >
-        <Typography variant="h4" align="center" gutterBottom>
-          Organise your day here
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            mt: 3, // Adds space (gutter) at the top
+            mb: 1, // Adds space (gutter) at the top
+          }}
+        >
+          Add your products here
         </Typography>
 
         <Box display="flex" justifyContent="space-evenly" p={2}>
