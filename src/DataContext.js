@@ -11,7 +11,6 @@ export default function DataProvider({ children }) {
   const defaultData = [
     {
       id: 0,
-      checked: false,
       purchaseDate: null,
       expiryDate: null,
       name: "JBL Headphones",

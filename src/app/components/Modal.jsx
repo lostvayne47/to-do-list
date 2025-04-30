@@ -27,7 +27,6 @@ export default function BasicModal({ updateData = null, open, handleClose }) {
 
   const defaultFormData = {
     id: null,
-    checked: false,
     purchaseDate: null,
     expiryDate: null,
     name: "",
