@@ -6,6 +6,7 @@ export default function Status({ themeColour, message }) {
       style={{
         color: "white",
         textAlign: "center",
+        fontWeight: "bold",
         borderRadius: "5px",
         background: themeColour,
       }}

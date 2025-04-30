@@ -18,14 +18,22 @@ const WarrantyTracker = () => {
       <Table sx={{ minWidth: 650, color: "white" }}>
         <TableHead>
           <TableRow>
-            <TableCell>Product</TableCell>
-            <TableCell sx={{ textAlign: "center" }}>Serial Number</TableCell>
-            <TableCell sx={{ textAlign: "center" }}>Purchase Date</TableCell>
-            <TableCell sx={{ textAlign: "center" }}>
+            <TableCell sx={{ fontWeight: "bold" }}>Product</TableCell>
+            <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+              Serial Number
+            </TableCell>
+            <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+              Purchase Date
+            </TableCell>
+            <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
               Warranty End Date
             </TableCell>
-            <TableCell sx={{ textAlign: "center" }}>Status</TableCell>
-            <TableCell sx={{ textAlign: "center" }}>Actions</TableCell>
+            <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+              Status
+            </TableCell>
+            <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+              Actions
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

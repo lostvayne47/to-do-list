@@ -18,20 +18,22 @@ const WarrantyRow = ({ itemData }) => {
     const daysLeft = (endDate - today) / (1000 * 3600 * 24); // Days difference
     let themeColour = "";
     let message = "";
+    // Expired
     if (daysLeft <= 0) {
       message = "Expired";
-      themeColour = "#BA2525";
-    } // Expired
+      themeColour = "#d32f2f";
+    }
+    // Expiring soon
     if (daysLeft <= 3) {
       message = "Due";
-      themeColour = "#FFB347";
-    } // Expiring soon
-    else {
+      themeColour = "#FF7300";
+    } else {
+      // Safe
       message = "Active";
-      themeColour = "#124912";
-    } // Safe
+      themeColour = "#2e7d32";
+    }
 
-    return <Status themeColour={"#124912"} message={message} />;
+    return <Status themeColour={themeColour} message={message} />;
   };
 
   const itemStatus = getStatus(itemData.expiryDate);
