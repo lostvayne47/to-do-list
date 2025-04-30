@@ -76,7 +76,7 @@ export default function BasicModal({ open, handleClose }) {
       >
         <Box sx={{ ...style, color: "black", bgcolor: "background.paper" }}>
           <Typography mb={2} id="modal-modal-title" variant="h6" component="h2">
-            Describe your task
+            Enter Product Details
           </Typography>
           <TextField
             fullWidth
