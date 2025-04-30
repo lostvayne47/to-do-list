@@ -14,7 +14,7 @@ export default function BasicDatePicker({ setFormData }) {
     setSelectedDate(newValue); // Store the selected date as a Date object
     setFormData((prevFormData) => ({
       ...prevFormData,
-      dueDate: dateValue, // Store in form data as Date object
+      expiryDate: dateValue, // Store in form data as Date object
     }));
   };
 
@@ -23,7 +23,7 @@ export default function BasicDatePicker({ setFormData }) {
     setSelectedDate(null); // Reset the selected date to null
     setFormData((prevFormData) => ({
       ...prevFormData,
-      dueDate: null, // Clear the due date in form data
+      expiryDate: null, // Clear the due date in form data
     }));
   };
 

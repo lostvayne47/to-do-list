@@ -28,8 +28,8 @@ export default function BasicModal({ open, handleClose }) {
   const [formData, setFormData] = useState({
     id: newId,
     checked: false,
-    createdDate: new Date(),
-    dueDate: null,
+    purchaseDate: new Date(),
+    expiryDate: null,
     name: "",
     serial: "",
   });
@@ -50,8 +50,8 @@ export default function BasicModal({ open, handleClose }) {
     setFormData({
       id: newId + 1, // Prepare for next task
       checked: false,
-      createdDate: new Date(),
-      dueDate: null,
+      purchaseDate: new Date(),
+      expiryDate: null,
       name: "",
       serial: "",
     });

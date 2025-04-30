@@ -5,11 +5,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Status from "./Status";
 
 const WarrantyRow = ({ itemData }) => {
-  const purchaseDate = itemData.createdDate
-    ? new Date(itemData.createdDate).toLocaleDateString()
+  const purchaseDate = itemData.purchaseDate
+    ? new Date(itemData.purchaseDate).toLocaleDateString()
     : "-- / - / ----";
-  const expiryDate = itemData.dueDate
-    ? new Date(itemData.dueDate).toLocaleDateString()
+  const expiryDate = itemData.expiryDate
+    ? new Date(itemData.expiryDate).toLocaleDateString()
     : "-- / - / ----";
 
   const getStatus = (warrantyEndDate) => {
@@ -34,7 +34,7 @@ const WarrantyRow = ({ itemData }) => {
     return <Status themeColour={"#124912"} message={message} />;
   };
 
-  const itemStatus = getStatus(itemData.dueDate);
+  const itemStatus = getStatus(itemData.expiryDate);
   return (
     <TableRow>
       <TableCell>{itemData.name}</TableCell>

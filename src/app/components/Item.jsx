@@ -7,22 +7,22 @@ import { DataContext } from "@/DataContext";
 
 export default function Item({ itemData }) {
   const { data, setAppData } = useContext(DataContext);
-  const startDate = itemData.createdDate
-    ? new Date(itemData.createdDate).toLocaleDateString()
+  const startDate = itemData.purchaseDate
+    ? new Date(itemData.purchaseDate).toLocaleDateString()
     : "-- / - / ----";
-  const endDate = itemData.dueDate
-    ? new Date(itemData.dueDate).toLocaleDateString()
+  const endDate = itemData.expiryDate
+    ? new Date(itemData.expiryDate).toLocaleDateString()
     : "-- / - / ----";
 
   const today = new Date().toLocaleDateString();
-  const dueDate = new Date(itemData.dueDate).toLocaleDateString();
+  const expiryDate = new Date(itemData.expiryDate).toLocaleDateString();
 
   let deadlineColour;
 
-  const diffInDays = (itemData.dueDate - new Date()) / (1000 * 60 * 60 * 24);
+  const diffInDays = (itemData.expiryDate - new Date()) / (1000 * 60 * 60 * 24);
   if (endDate === "-- / - / ----") {
     deadlineColour = "";
-  } else if (today === dueDate) {
+  } else if (today === expiryDate) {
     deadlineColour = "darkred"; // Due today
   } else if (diffInDays <= 3) {
     deadlineColour = "darkyellow"; // Due within 3 days

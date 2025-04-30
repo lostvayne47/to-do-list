@@ -12,8 +12,8 @@ export default function DataProvider({ children }) {
     {
       id: 0,
       checked: false,
-      createdDate: new Date(),
-      dueDate: null,
+      purchaseDate: null,
+      expiryDate: null,
       name: "JBL Headphones",
       serial: "EF235XXX",
     },
