@@ -24,10 +24,8 @@ const sendEmail = (
   //   console.log(process.env.REACT_APP_EMAILJS_SERVICE_ID);
   //   console.log(process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
   //   console.log(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
-  emailjs.init(publicKey); // ✅ Correct initialization
-
   emailjs
-    .send(serviceId, templateId, templateParams)
+    .send(serviceId, templateId, templateParams, publicKey)
     .then((response) => {
       console.log("Email sent successfully:", response);
     })
