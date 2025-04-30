@@ -29,7 +29,7 @@ export default function Home() {
   const handleClose = () => setOpen(false);
   const { data } = useContext(DataContext);
   const [email, setEmail] = useState("");
-  const websiteURL = "https://yourwebsite.com";
+  const websiteURL = "https://warranty-tracker.vercel.app/";
 
   function handleClick(e) {
     e.preventDefault();
