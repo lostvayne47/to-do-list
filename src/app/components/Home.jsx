@@ -62,10 +62,14 @@ export default function Home() {
     if (daysLeft <= 3) return 2; // Due
     return 1; // Active
   }
+  const isValidEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
   function handleSend() {
     try {
-      if (email) {
+      if (email && isValidEmail(email)) {
         data.map((d) => {
           if (getStatus(d.expiryDate) > 1) {
             sendEmail(
