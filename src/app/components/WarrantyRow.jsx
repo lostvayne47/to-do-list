@@ -4,9 +4,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Status from "./Status";
 import { DataContext } from "@/DataContext";
+import BasicModal from "./Modal";
 
 const WarrantyRow = ({ itemData }) => {
   const { data, setAppData } = useContext(DataContext);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const purchaseDate = itemData.purchaseDate
     ? new Date(itemData.purchaseDate).toLocaleDateString()
     : "-- / - / ----";
@@ -44,23 +49,28 @@ const WarrantyRow = ({ itemData }) => {
     const newData = data.filter((d) => d.id != itemData.id);
     setAppData(newData);
   }
-
+  function handleUpdate() {
+    handleOpen();
+  }
   return (
-    <TableRow>
-      <TableCell>{itemData.name}</TableCell>
-      <TableCell sx={{ textAlign: "center" }}>{purchaseDate}</TableCell>
-      <TableCell sx={{ textAlign: "center" }}>{expiryDate}</TableCell>
-      <TableCell sx={{ textAlign: "center" }}>{itemData.serial}</TableCell>
-      <TableCell sx={{ textAlign: "center" }}>{itemStatus}</TableCell>
-      <TableCell sx={{ textAlign: "center" }}>
-        <IconButton color="primary" aria-label="edit">
-          <EditIcon />
-        </IconButton>
-        <IconButton color="secondary" aria-label="delete">
-          <DeleteIcon onClick={handleDelete} />
-        </IconButton>
-      </TableCell>
-    </TableRow>
+    <>
+      <BasicModal open={open} handleClose={handleClose} updateData={itemData} />
+      <TableRow>
+        <TableCell>{itemData.name}</TableCell>
+        <TableCell sx={{ textAlign: "center" }}>{purchaseDate}</TableCell>
+        <TableCell sx={{ textAlign: "center" }}>{expiryDate}</TableCell>
+        <TableCell sx={{ textAlign: "center" }}>{itemData.serial}</TableCell>
+        <TableCell sx={{ textAlign: "center" }}>{itemStatus}</TableCell>
+        <TableCell sx={{ textAlign: "center" }}>
+          <IconButton color="primary" aria-label="edit">
+            <EditIcon onClick={handleUpdate} />
+          </IconButton>
+          <IconButton color="secondary" aria-label="delete">
+            <DeleteIcon onClick={handleDelete} />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    </>
   );
 };
 

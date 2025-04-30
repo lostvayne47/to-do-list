@@ -19,20 +19,22 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ open, handleClose }) {
+export default function BasicModal({ updateData = null, open, handleClose }) {
   const { data, setAppData } = useContext(DataContext);
-  const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+
   const [nameTouched, setNameTouched] = useState(false);
   const [serialTouched, setSerialTouched] = useState(false);
 
-  const [formData, setFormData] = useState({
-    id: newId,
+  const defaultFormData = {
+    id: null,
     checked: false,
     purchaseDate: new Date(),
     expiryDate: null,
     name: "",
     serial: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(updateData || defaultFormData);
 
   const handleInputChange = (event) => {
     setFormData((prevFormData) => ({
@@ -40,21 +42,23 @@ export default function BasicModal({ open, handleClose }) {
       [event.target.name]: event.target.value, // Update the field with the new value
     }));
   };
+
   const handleSubmit = () => {
-    const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
-    const newTask = { ...formData, id: newId };
-
-    console.log("Task Added:", newTask);
-    setAppData([...data, newTask]);
-
-    setFormData({
-      id: newId + 1, // Prepare for next task
-      checked: false,
-      purchaseDate: new Date(),
-      expiryDate: null,
-      name: "",
-      serial: "",
-    });
+    if (!updateData) {
+      const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+      const newProduct = { ...formData, id: newId };
+      console.log("Product Added:", newProduct);
+      setAppData([...data, newProduct]);
+      setFormData(defaultFormData);
+    } else {
+      const updatedProduct = data.map((d) => {
+        if (d.id === formData.id) {
+          return { ...d, ...formData }; // Spread existing properties and update with formData
+        }
+        return d; // Return the original item if the id doesn't match
+      });
+      setAppData(updatedProduct); // Updated line: directly set the updated array
+    }
 
     handleClose();
   };
