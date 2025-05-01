@@ -34,7 +34,7 @@ const WarrantyRow = ({ itemData }) => {
       themeColour = "#d32f2f";
     }
     // Expiring soon
-    if (daysLeft <= 3) {
+    else if (daysLeft <= 3) {
       message = "Due";
       themeColour = "#FF7300";
     } else {
